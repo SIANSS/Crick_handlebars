@@ -86,4 +86,34 @@ router.post('/register', (req, res)=>{
 
 });
 
+router.post("/login", (req, res) => {
+  var mail = req.body.mail;
+  var password = req.body.password;
+
+  req.checkBody('mail', 'The Mail is required').notEmpty();
+  req.checkBody('password', 'The password field is empty').notEmpty();
+
+  var errors = req.validationErrors();
+
+  if(errors){
+    res.render('/users/login', {
+      errors : errors
+    })
+  }
+  else {
+    Team.findOne({ 'manager.mail' : mail}, (err, team)=>{
+      if(team){
+        res.redirect('/');
+        req.flash('success_msg', 'Login successful!!');
+      }
+      else {
+        var msg = err;
+        res.redirect('/users/login');
+        req.flash('error_msg', err);
+        console.log("this isn't happening!!!!");
+      }
+    })
+  }
+})
+
 module.exports = router;

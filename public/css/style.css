@@ -98,3 +98,11 @@ footer{
   font-weight:bolder;
   width:30%;
 }
+
+#datepicker{
+  width:180px;
+  margin: 5% auto 5% auto;
+}
+#datepicker > span:hover{
+  cursor: pointer;
+}
