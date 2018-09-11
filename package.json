@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Traversy media tutorial",
   "main": "app.js",
+  "engines": {
+    "node": "6.10.1"
+  },
   "dependencies": {
     "bcryptjs": "latest",
     "body-parser": "*",

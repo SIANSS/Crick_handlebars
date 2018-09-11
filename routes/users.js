@@ -96,10 +96,10 @@ passport.use(new LocalStrategy(
         return done(null, false, {message: 'Unknown Manager mail id'});
       }
 
-      Team.comparePassword(password, manager.password, (err, isMatch)=>{
+      Team.comparePassword(password, team.manager.password, (err, isMatch)=>{
         if(err) throw err;
         if(isMatch){
-          return done(null, user);
+          return done(null, team);
         }
         else{
           return done(null, false, {message: 'Invalid Password'});
@@ -120,11 +120,12 @@ passport.deserializeUser((id, done)=>{
 });
 
 router.post('/login',
-  passport.authenticate('local', {successRedirect: '/', failureRedirect: '/users/login', failureFlash: true}),
+  passport.authenticate('local', {successRedirect: '/fix', failureRedirect: '/users/login', failureFlash: true}),
     (req, res)=>{
-      res.redirect('/');
+      res.redirect('/users/login');
     });
 
+// router.get('/fix')
 
 // router.post("/login", (req, res) => {
 //   var mail = req.body.mail;
