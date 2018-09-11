@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 
 var Team = require('../models/team');
 
@@ -12,7 +15,6 @@ router.get('/register', (req, res)=>{
 router.get('/login', (req, res)=>{
   res.render('login');
 });
-
 
 // register route
 router.post('/register', (req, res)=>{
@@ -83,37 +85,76 @@ router.post('/register', (req, res)=>{
       }
     });
   };
-
 });
 
-router.post("/login", (req, res) => {
-  var mail = req.body.mail;
-  var password = req.body.password;
 
-  req.checkBody('mail', 'The Mail is required').notEmpty();
-  req.checkBody('password', 'The password field is empty').notEmpty();
+passport.use(new LocalStrategy(
+  (mail, password, done)=>{
+    Team.getTeamBymanMail(mail, (err, team)=>{
+      if(err) throw err;
+      if(!team){
+        return done(null, false, {message: 'Unknown Manager mail id'});
+      }
 
-  var errors = req.validationErrors();
-
-  if(errors){
-    res.render('/users/login', {
-      errors : errors
+      Team.comparePassword(password, manager.password, (err, isMatch)=>{
+        if(err) throw err;
+        if(isMatch){
+          return done(null, user);
+        }
+        else{
+          return done(null, false, {message: 'Invalid Password'});
+        }
+      })
     })
   }
-  else {
-    Team.findOne({ 'manager.mail' : mail}, (err, team)=>{
-      if(team){
-        res.redirect('/');
-        req.flash('success_msg', 'Login successful!!');
-      }
-      else {
-        var msg = err;
-        res.redirect('/users/login');
-        req.flash('error_msg', err);
-        console.log("this isn't happening!!!!");
-      }
-    })
-  }
-})
+));
+
+passport.serializeUser((team, done)=>{
+  done(null, team.id);
+});
+
+passport.deserializeUser((id, done)=>{
+  Team.getTeamById(id, (err, team)=>{
+    done(err, team);
+  });
+});
+
+router.post('/login',
+  passport.authenticate('local', {successRedirect: '/', failureRedirect: '/users/login', failureFlash: true}),
+    (req, res)=>{
+      res.redirect('/');
+    });
+
+
+// router.post("/login", (req, res) => {
+//   var mail = req.body.mail;
+//   var password = req.body.password;
+//
+//   req.checkBody('mail', 'The Mail is required').notEmpty();
+//   req.checkBody('password', 'The password field is empty').notEmpty();
+//
+//   var errors = req.validationErrors();
+//
+//   if(errors){
+//     res.render('/users/login', {
+//       errors : errors
+//     })
+//   }
+//   else {
+//     Team.findOne({ 'manager.mail' : mail}, (err, team)=>{
+//       if(team){
+//         console.log("this is happening!!!!");
+//         res.redirect('/');
+//         req.flash('success_msg', 'Login successful!!');
+//       }
+//       else {
+//         var msg = err;
+//         res.redirect('/users/login');
+//         req.flash('error_msg', err);
+//         console.log("this isn't happening!!!!");
+//       }
+//     })
+//   }
+// })
 
 module.exports = router;

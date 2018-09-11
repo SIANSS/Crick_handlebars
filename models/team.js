@@ -76,3 +76,21 @@ module.exports.createTeam = (newTeam, callback) => {
     })
   })
 }
+
+
+module.exports.getTeamBymanMail = (mail, callback)=>{
+  var query = { 'manager.mail' : mail};
+  Team.findOne(query, callback);
+}
+
+module.exports.getTeamById = (id, callback)=>{
+  Team.findById(id, callback);
+}
+
+
+module.exports.comparePassword = (candidatePassword, hash, callback)=>{
+  bcrypt.compare(candidatePassword ,hash, (err, res)=>{
+    if(err) throw err;
+    callback(null, isMatch);
+  });
+}
