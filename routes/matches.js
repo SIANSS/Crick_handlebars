@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+var Match = require('../models/match');
 
-router.get('/', (req, res)=>{
-  res.render('index');
+
+router.get('/fix', ensureAuthenticated, (req, res)=>{
+  res.render('fix');
 })
 
 function ensureAuthenticated(req, res, next){
@@ -17,4 +19,3 @@ function ensureAuthenticated(req, res, next){
 
 
 module.exports = router;
-// module.exports = ensureAuthenticated();

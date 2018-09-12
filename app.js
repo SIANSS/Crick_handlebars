@@ -16,6 +16,7 @@ var db = mongoose.connection;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var matches = require('./routes/matches');
 
 // initialize loginapp
 
@@ -69,9 +70,10 @@ app.use((req, res, next)=>{
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/matches', matches);
 
 app.set('port', (process.env.PORT || 4446));
 
 app.listen(app.get('port'), ()=>{
-  console.log('server started on port ' +app.get('port'));
+  console.log('server started on port ' + app.get('port'));
 });
