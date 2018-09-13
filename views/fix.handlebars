@@ -1,7 +1,15 @@
 <div class="row">
-  <div class="col-lg-12" style="background-color:black;">
-    <form class="" action="/fix" method="get">
-      <input type="date" id="datepicker" value="">
-    </form>
+  <div class="col-lg-6">
+      <input class="form-control" id="datus" onchange="getallteams()" type="date" autoreset>
+
   </div>
+  <button type="button" class="hidden" id="btn"></button>
+  <!-- user shouldn't be able to select yesterday and any day before that -->
+  <select class="hidden" id="row"></select>
+  <div class="col-lg-12 mid">
+    <div id="selection-section">
+      <br>
+    </div>
+  </div>
+
 </div>
