@@ -9,7 +9,7 @@ var Match = require('../models/match');
 
 
 router.get('/fix', ensureAuthenticated, (req, res)=>{
-  res.render('fix');
+  res.render('fix', {team : req.user});
 })
 
 function ensureAuthenticated(req, res, next){

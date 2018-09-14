@@ -1,15 +1,31 @@
+<h5>USER ::</h5>
+<input id="homet" type="text" disabled value="{{team.team_name}}">
+<br>
+<br>
 <div class="row">
-  <div class="col-lg-6">
-      <input class="form-control" id="datus" onchange="getallteams()" type="date" autoreset>
+  <form>
 
+  <div class="col-lg-12">
+      <input class="form-control" id="datus" onchange="getallteams()" type="date" autoreset>
+      <br>
+      <select class="hidden form-control" id="teams"></select>
+      <div class="col-lg-6">
+        <br>
+        <br>
+        <button type="button" class="hidden form-control" id="btn"></button>
+        <br>
+      </div>
   </div>
-  <button type="button" class="hidden" id="btn"></button>
   <!-- user shouldn't be able to select yesterday and any day before that -->
-  <select class="hidden" id="row"></select>
+  <br>
+  <br>
+  <select class="hidden form-control" id="locations">
+
+  </select>
   <div class="col-lg-12 mid">
     <div id="selection-section">
       <br>
     </div>
   </div>
-
+</form>
 </div>
