@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
 
 var MatchSchema = mongoose.Schema({
   status_fixed      : {type:Boolean,required:true},

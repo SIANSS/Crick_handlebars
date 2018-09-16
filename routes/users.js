@@ -95,7 +95,6 @@ passport.use(new LocalStrategy(
       if(!team){
         return done(null, false, {message: 'Unknown Manager mail id'});
       }
-
       Team.comparePassword(password, team.manager.password, (err, isMatch)=>{
         if(err) throw err;
         if(isMatch){
@@ -125,4 +124,11 @@ router.post('/login',
       res.redirect('/users/login');
     });
 
+
+router.get('/logout', (req, res)=>{
+  req.logout();
+  req.flash('success_msg', 'Logged out');
+
+  res.redirect('/users/login');
+})
 module.exports = router;
