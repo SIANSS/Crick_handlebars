@@ -104,7 +104,7 @@ function getallmatchesfu() {
     if(this.readyState == 4 && this.status == 200){
       var data1 = JSON.parse(this.responseText);
       for(var i = 0; i < data1.length; i++){
-        document.getElementById('MatchesforYou').innerHTML += "<div class='col-lg-6 mid'>"+data1[i].time+"</div><div class='col-lg-6 mid'>"+data1[i].date+"</div><br><br><div class='col-lg-12 mid'>"+data1[i].location+"</div><br><br><div class='col-lg-4 mid'>"+data1[i].teams.home+"</div><div class='col-lg-4 mid'>VS</div><div class='col-lg-4 mid'>"+data1[i].teams.away+"</div><p id='px"+i+"' class='hidden btn-danger'> NOT Confirmed !!</p>";
+        document.getElementById('MatchesforYou').innerHTML += "<div class='col-lg-6 mid'>"+data1[i].time+"</div><div class='col-lg-6 mid'>"+data1[i].date+"</div><br><br><div class='col-lg-12 mid'>"+data1[i].location+"</div><br><br><div class='col-lg-4 mid'>"+data1[i].teams.home+"</div><div class='col-lg-4 mid'>VS</div><div class='col-lg-4 mid'>"+data1[i].teams.away+"</div><br><br><br><br><p id='px"+i+"' class='hidden btn-danger'> NOT Confirmed !!</p> <br><br><br>";
         if(data1[i].status_fixed == false) {
           document.getElementById('px'+i+'').classList.remove("hidden");
         }
@@ -128,7 +128,7 @@ function getallmatchesbu() {
 
       document.getElementById('MatchesByYou').innerHTML = "<h3 class='mid'>Arranged by Other</h3>"
       for(var i = 0; i < data2.length; i++){
-        document.getElementById('MatchesByYou').innerHTML += "<input type='text' class='hidden' id='team_id"+i+"' value='"+data2[i]._id+"'><div class='col-lg-6 mid' id='time"+i+"'>"+data2[i].time+"</div><div id='date"+i+"' class='col-lg-6 mid'>"+data2[i].date+"</div><br><br><div id='location"+i+"' class='col-lg-12 mid'>"+data2[i].location+"</div><br><br><div id='home"+i+"' class='col-lg-4 mid'>"+data2[i].teams.home+"</div><div class='col-lg-4 mid'>VS</div><div id='away"+i+"' class='col-lg-4 mid'>"+data2[i].teams.away+"</div><div id='conf"+i+"' class='hidden mid col-lg-12'></div><br><br><br><br><br>";
+        document.getElementById('MatchesByYou').innerHTML += "<input type='text' class='hidden' id='team_id"+i+"' value='"+data2[i]._id+"'><div class='col-lg-6 mid' id='time"+i+"'>"+data2[i].time+"</div><div id='date"+i+"' class='col-lg-6 mid'>"+data2[i].date+"</div><br><br><div id='location"+i+"' class='col-lg-12 mid'>"+data2[i].location+"</div><br><br><div id='home"+i+"' class='col-lg-4 mid'>"+data2[i].teams.home+"</div><div class='col-lg-4 mid'>VS</div><div id='away"+i+"' class='col-lg-4 mid'>"+data2[i].teams.away+"</div><div id='conf"+i+"' class='hidden mid col-lg-12'></div><br><br><br><br><br><br><br><br>";
         if(data2[i].status_fixed == false) {
           document.getElementById('conf'+i+'').classList.remove("hidden");
           document.getElementById('conf'+i+'').innerHTML += "<button class='col-lg-6 form-control' onclick='confirmit("+i+")'>Confirm it</button><br><br><br>";
@@ -157,7 +157,7 @@ function confirmit(conf){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function (){
     if(this.readyState == 4 && this.status == 200){
-
+      // getallmatchesfu();
       getallmatchesbu();
     }
   }
