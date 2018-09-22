@@ -16,9 +16,6 @@ if(getUrl.pathname == "/matches/fix"){
   datus.min = new Date().toISOString().split("T")[0];
 }
 
-
-
-
 function getallteams(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -31,6 +28,14 @@ function getallteams(){
 
       for(var i = 0; i < data.length; i++){
         selectEl.options.add(new Option(data[i].team_name, data[i].team_name));
+      }
+      for(var i=0; i < selectEl.length; i++){
+
+        if(selectEl.options[i].value == document.getElementById('name_getter').value){
+          selectEl.options[i].remove();
+        }else {
+          console.log('NOT Found');
+        }
       }
 
       selectEl.onchange = function(){
