@@ -119,10 +119,10 @@ passport.deserializeUser((id, done)=>{
 });
 
 router.post('/login',
-  passport.authenticate('local', {successRedirect: '/matches/fix', failureRedirect: '/users/login', failureFlash: true}),
-    (req, res)=>{
-      res.redirect('/users/login');
-    });
+passport.authenticate('local', {successRedirect: '/matches/fix', failureRedirect: '/users/login', failureFlash: true}),
+(req, res)=>{
+  res.redirect('/users/login');
+});
 
 
 router.get('/logout', (req, res)=>{
@@ -130,5 +130,6 @@ router.get('/logout', (req, res)=>{
   req.flash('success_msg', 'Logged out');
 
   res.redirect('/users/login');
-})
+});
+
 module.exports = router;

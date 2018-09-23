@@ -16,6 +16,18 @@ if(getUrl.pathname == "/matches/fix"){
   datus.min = new Date().toISOString().split("T")[0];
 }
 
+if(getUrl.pathname !== "/"){
+  document.getElementById('homenavbut').classList.remove("hidden");
+}
+
+if(getUrl.pathname !== "/users/login"){
+  document.getElementById('lognavbut').classList.remove("hidden");
+}
+
+if(getUrl.pathname !== "/users/register"){
+  document.getElementById('regnavbut').classList.remove("hidden");
+}
+
 function getallteams(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -34,7 +46,7 @@ function getallteams(){
         if(selectEl.options[i].value == document.getElementById('name_getter').value){
           selectEl.options[i].remove();
         }else {
-          console.log('NOT Found');
+          // console.log('NOT Found');
         }
       }
 
@@ -171,4 +183,20 @@ function confirmit(conf){
   xhttp.open("PUT", baseUrl+"/confirmmatch/"+id, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(params);
+}
+
+
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 3000); // Change image every 2 seconds
 }

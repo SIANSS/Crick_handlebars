@@ -22,8 +22,7 @@ function ensureAuthenticated(req, res, next){
 }
 
 router.get('/getallteam', ensureAuthenticated, (req, res)=> {
-
-  db.collection('teams').find({}).toArray((err, result) =>{
+  db.collection('teams').find({}).toArray((err, result) => {
     if (err) throw err;
     if (!result) {
       console.log("no result avaialble!!!");
@@ -35,15 +34,7 @@ router.get('/getallteam', ensureAuthenticated, (req, res)=> {
   });
 });
 
-router.post('/fix', ensureAuthenticated, (req, res)=> {
-  // var location = req.params.location;
-  // var date = req.params.date;
-  // var time = req.params.time;
-  // var home = req.params.home;
-  // var away = req.params.away;
-  // var overs = req.params.overs;
-  // var ppt = req.params.ppt;
-
+router.post('/fix', ensureAuthenticated, (req, res) => {
 
   var newMatch = new Match();
   newMatch.status_fixed = false;
