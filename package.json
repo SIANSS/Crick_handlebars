@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bcryptjs": "latest",
+    "bcrypt-nodejs": "*",
     "body-parser": "*",
     "connect-flash": "*",
     "cookie-parser": "^1.4.1",
@@ -20,7 +21,9 @@
     "mongodb": "*",
     "passport": "*",
     "passport-http": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "passport-facebook": "~2.1.1",
+    "passport-google-oauth": "~1.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

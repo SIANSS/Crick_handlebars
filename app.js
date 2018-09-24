@@ -1,5 +1,6 @@
 var express =require('express');
 var path = require('path');
+var app = express();
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
@@ -14,13 +15,13 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/crick');
 var db = mongoose.connection;
 
-var routes = require('./routes/index');
+require('./config/passport')(passport); // pass passport for configuration
+
 var users = require('./routes/users');
 var matches = require('./routes/matches');
 
 // initialize loginapp
 
-var app = express();
 
 //  View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -68,7 +69,8 @@ app.use((req, res, next)=>{
   next();
 });
 
-app.use('/', routes);
+// app.use('/', routes);
+require('./routes/index')(app, passport);
 app.use('/users', users);
 app.use('/matches', matches);
 

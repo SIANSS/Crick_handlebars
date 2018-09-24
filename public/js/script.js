@@ -28,6 +28,28 @@ if(getUrl.pathname !== "/users/register"){
   document.getElementById('regnavbut').classList.remove("hidden");
 }
 
+if(getUrl.pathname == "/connect"){
+  document.getElementById('contnavbut').classList.add("hidden");
+}
+
+if(getUrl.pathname == "/about_us"){
+  document.getElementById('abusnavbut').classList.add("hidden");
+}
+
+if(getUrl.pathname == "/forums"){
+  document.getElementById('formnavbut').classList.add("hidden");
+}
+
+if(getUrl.pathname == "/users/register"){
+  document.getElementById('root').classList.remove("colored-row");
+  document.getElementById('root').classList.add("inverte-row");
+}
+
+if(getUrl.pathname == "/users/login"){
+  document.getElementById('root').classList.remove("colored-row");
+  document.getElementById('root').classList.add("inverte-login-row");
+}
+
 function getallteams(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -199,4 +221,23 @@ function showSlides() {
     if (slideIndex > slides.length) {slideIndex = 1}
     slides[slideIndex-1].style.display = "block";
     setTimeout(showSlides, 3000); // Change image every 2 seconds
+}
+
+function add(){
+  var title = document.getElementById('datus').value;
+  var body  = document.getElementById('locations').value;
+
+  var params = "title="+title+"&body="+body;
+  console.log(params);
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if(this.readyState == 4 && this.status == 200){
+      document.getElementById('success_id').innerHTML = "<h1>Added</h1>";
+    }
+  }
+
+  xhttp.open("POST", baseUrl+"/forums", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(params)
 }
