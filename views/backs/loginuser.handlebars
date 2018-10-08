@@ -1,0 +1,23 @@
+<p>{{message}}</p>
+
+<div class="col-lg-12 jumbotron mid">
+
+<form action="/usrlogin" method="post">
+  <br>
+  <input id="mailer" name="email" type="email" class="form-control" placeholder="Email">
+  <br>
+  <input id="passsword"  name="password" type="password" class="form-control" placeholder="Password">
+  <br>
+    <button type="submit" class="btn btn-success" name="button">Log in</button>
+  <p><b><a href="/forgot">Forgot your password</a></b> </p>
+  <p>Don't have an account yet? <b><a href="/usrregister">Sign up</a></b> </p>
+</form>
+
+
+
+<a href="/auth/facebook"  class="btn btn-default fb"> <img src="images/fbico.png" alt="">Sign in with Facebook </a>
+<br>
+<a href="/auth/google" class="btn btn-default google"> <img src="images/googico.png" alt=""> Sign in with Google </a>
+<br>
+</div>
+</div>

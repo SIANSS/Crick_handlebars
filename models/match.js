@@ -13,6 +13,10 @@ var MatchSchema = mongoose.Schema({
           overs       : {type:String,required:false},
           player_per_team : {type:Number,required:false},
           bowlers     : {type:Number, required:false}
+  },
+  misc              : {
+          fixdate     : {type:String, required:false},
+          fixtime     : {type:String, required:false}
   }
 });
 

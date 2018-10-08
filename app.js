@@ -12,10 +12,10 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/crick');
+mongoose.connect('mongodb://admin:Sicar1996@ds119750.mlab.com:19750/crick_at');
 var db = mongoose.connection;
 
-require('./config/passport')(passport); // pass passport for configuration
+// require('./config/passport')(passport); // pass passport for configuration
 
 var users = require('./routes/users');
 var matches = require('./routes/matches');

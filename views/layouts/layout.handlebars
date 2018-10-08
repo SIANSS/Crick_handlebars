@@ -1,59 +1,198 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Crick@ || Plan fast Play fast</title>
-  <link rel="stylesheet" href="/css/bootstrap.css">
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+	<title>Crick@ - Plan fast, Play fast</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<style media="screen">
+	.mid{
+		margin-left: auto;
+		margin-right: auto;
+		width: 100;
+	}
+	.hidden{
+		display: none;
+	}
+	.containerx{
+		margin-top: 2%;
+		display: block;
+		width: 75%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.left{
+		margin-left: auto;
+	}
+	.right{
+		margin-right: auto;
+	}
+	.push-it-down {
+		margin-top: 5%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#matchlist {
+		background-color: white;
+	}
+	</style>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
+
 <body>
-  <div class="container">
-    <div class="header clearfix">
-      <img style="width:20%; margin:1% auto 2% auto; display:block;" class="cricklog" src="../images/Crick@.png" alt="">
-      <nav>
-        <ul class="nav nav-justified colored color_white">
-          {{#if team}}
-          <li id="navpan" role="presentation"></li>
-          <li role="presentation"><a href="/users/logout">Logout</a></li>
-          {{else}}
-          <li id="abusnavbut"  role="presentation"><a href="/about_us">About us</a></li>
-          <li id="contnavbut"  role="presentation"><a href="/connect">Contact</a></li>
-          <li id="formnavbut"  role="presentation"><a href="/forums">Forums</a></li>
-          <li id="homenavbut" class="hidden" role="presentation"><a href="/">Home</a></li>
-          <li id="lognavbut" class="hidden" role="presentation"><a href="/users/login">Login</a></li>
-          <li id="regnavbut" class="hidden" role="presentation"><a href="/users/register">Register</a></li>
-          {{/if}}
-        </ul>
-      </nav>
-    </div>
+
+	<!-- Main navigation -->
+	<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary">
+		<div class="container">
+
+			<!-- Company name shown on mobile -->
+			<a class="navbar-brand" href="/"><span>Crick</span>@</a>
+
+			<!-- Mobile menu toggle -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Main navigation items -->
+			<div class="collapse navbar-collapse" id="mainNavbar">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plan &amp; Play</a>
+						<div class="dropdown-menu navbar-dark bg-primary">
+							<a class="dropdown-item" href="/users/register">Join us</a>
+							<a class="dropdown-item" disabled href="#">Call for a Tournament</a>
+						</div>
+					</li>
 
 
-    <div id="root" class="row colored-row">
-      <div class="col-lg-12">
-        {{#if success_msg}}
-        <div class="alert alert-success">{{success_msg}}</div>
-        {{/if}}
+					<!-- <li class="nav-item">
+					<a class="nav-link" href="#">Sponsor Tournament/Match</a>
+				</li> -->
 
-        {{#if error_msg}}
-        <div class="alert alert-danger">{{error_msg}}</div>
-        {{/if}}
+				<!-- <li class="nav-item">
+				<a class="nav-link" href="#"></a>
+			</li> -->
 
-        {{#if error}}
-        <div class="alert alert-danger">{{error}}</div>
-        {{/if}}
-        {{{body}}}
-      </div>
-    </div>
-    {{#if team}}
-    <input type="text" id="name_getter" class="hidden" value="{{team.team_name}}">
-    {{/if}}
+			<li class="nav-item">
+				<a class="nav-link" href="#">About Team Crick@</a>
+			</li>
+		</ul>
 
-    <footer class="footer mid pulldown_">
-      <p>&copy; 2018 Crick@.</p>
-    </footer>
-  </div> <!-- /container -->
-  <script src="../js/jquery-3.3.1.js" charset="utf-8"></script>
-  <script src="../js/script.js" charset="utf-8"></script>
+		<div class="form-inline header-search-form my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="text" size="7"  placeholder="Check Teams" aria-label="Search">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search <i class="fa fa-search" aria-hidden="true"></i></button>
+		</div>
+
+		{{#if team}}
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{team.manager.name}}</a>
+			<input class="hidden" id="name_getter" value="{{team.team_name}}">
+			<!-- <div class="dropdown-menu navbar-dark bg-primary"> -->
+				<!-- <a class="dropdown-item" href="three-column.html"></a> -->
+				<!-- <a class="dropdown-item" href="three-column.html">Fund a Tournament</a> -->
+			<!-- </div> -->
+		</li>
+		{{else}}
+		<li class="nav-item dropdown">
+			<a class="nav-link " href="/users/login"> Login </a>
+		</li>
+		{{/if}}
+
+	</div>
+
+
+
+</div>
+</nav>
+
+<div id="root" class="row">
+	<div class="col-lg-12">
+		<div class="container ">
+			<div class="col-sm-12">
+
+				{{#if success_msg}}
+				<div class="push-it-down alert alert-success">{{success_msg}}</div>
+				{{/if}}
+
+				{{#if error_msg}}
+				<div class="push-it-down alert alert-danger">{{error_msg}}</div>
+				{{/if}}
+
+				{{#if error}}
+				<div class="push-it-down alert alert-danger">{{error}}</div>
+				{{/if}}
+			</div>
+		</div>
+		{{{body}}}
+	</div>
+</div>
+{{#if team}}
+<input type="text" id="name_getter" class="hidden" value="{{team.team_name}}">
+{{/if}}
+
+
+<!-- Footer -->
+<footer class="footer">
+	<div class="footer-lists">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm">
+					<ul>
+						<li><h4>Become an Official Team</h4></li>
+						<li><a href="#">Register Now</a></li>
+						<li><a href="#">Arrange a Match</a></li>
+						<li><a href="#">Review your score</a></li>
+					</ul>
+				</div>
+				<div class="col-sm">
+					<ul>
+						<li><h4>Become Sponsor</h4></li>
+						<li><a href="#">Donate & Become our patron</a></li>
+						<li><a href="#">Sponsor a team</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-6">
+					<ul>
+						<li><h4>Organize a Tournament</h4></li>
+						<li><a href="#">Request a Tournament</a></li>
+						<li><a href="#">Review Tournament stats</a></li>
+					</ul>
+				</div>
+				<div class="col-sm">
+					<h4>Stay in touch</h4>
+					<p>Continue to be one of us, stay connected and receive more information and get involved in future endeavours</p>
+
+					<p class="social-icons">
+						<a href="#"><i class="fa fa-facebook fa-2x"></i></a>
+						<a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+						<a href="#"><i class="fa fa-youtube fa-2x"></i></a>
+						<a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="footer-bottom">
+		<!-- <p class="text-center">Free Bootstrap Template by <a href="https://zypopwebtemplates.com/">ZyPop</a>.</p> -->
+		<p class="text-center"><a href="#">Back to top</a></p>
+	</div>
+</footer>
+
+
+
+<!-- Bootcamp JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="/js/script.js" charset="utf-8"></script>
 </body>
 </html>

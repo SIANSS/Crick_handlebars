@@ -1,0 +1,309 @@
+body {
+  /* height: 1vw; */
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: lightgray;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.colored{
+  background-color: #9dcd53;
+}
+.projc{
+  font-size: 4vw;
+}
+.inverte-row{
+  border-radius: 1%;
+  background-color: gray;
+  width: 99%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.invert-colore{
+  color:black;
+}
+.fb {
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px !important;
+  background-color: #3B5995;
+  border-radius: 2px;
+}
+.fb:hover{
+  color: black
+}
+.fb > img{
+  width: 10%;
+  height: 5%;
+}
+.google {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 5px !important;
+  border-radius: 2px;
+  background-color: #B34134;
+  border: 1px solid #D15344;
+}
+.google:hover{
+  color: black
+}
+.google > img{
+  width: 10%;
+  height: 5%;
+}
+.inverte-login-row{
+  border-radius: 1%;
+  background-color: gray;
+  width: 99%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.colored-row{
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  background-color: #000;
+  color: white;
+}
+.fitit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+.pulldown{
+  margin-top: 50%;
+}
+.pulldown_{
+  margin-bottom: 12px;
+}
+.infoh1{
+  font-size: 2vw;
+}
+.infop{
+  font-size: 1vw;
+}
+.infop1{
+  font-size: 0.75vw;
+}
+.mid {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center;
+}
+.viewer_container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Custom page header */
+.header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+
+.page-header{
+  margin-top: 0;
+}
+
+
+footer{
+  margin-top: 40px;
+}
+
+
+/* .btn{
+  margin-left:auto;
+  margin-right: auto;
+  display:block;
+  background-color: green;
+  color: white;
+  font-weight:bolder;
+  width:30%;
+  } */
+
+  #datepicker{
+    width:180px;
+    margin: 5% auto 5% auto;
+  }
+  #datepicker > span:hover{
+    cursor: pointer;
+  }
+
+  * {box-sizing:border-box}
+
+  /* Slideshow container */
+  .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
+  }
+
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+  }
+
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  /* Caption text */
+  .text {
+    color: #000;
+    font-size: 2vw;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  .h1text {
+    text-align: center;
+    font-size: 4vw;
+  }
+  .h2text{
+    text-align: center;
+    font-size: 3vw;
+  }
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 2.6s ease;
+  }
+
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+
+  /* Fading animation */
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 4s;
+    animation-name: fade;
+    animation-duration: 4s;
+  }
+
+  @-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }

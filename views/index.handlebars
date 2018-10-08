@@ -1,69 +1,256 @@
-</div>
-</div>
-</div>
-<div class="viewer_container">
-  <!-- Slideshow container -->
-  <div class="slideshow-container">
+<!-- Jumbtron / Slider -->
+<div class="jumbotron-wrap jumbotron-wrap-image mb-0">
+  <div class="container">
+    <div id="mainCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="jumbotron">
+            <h1 class="text-center">Wanna Play Cricket??</h1>
+            <p class="lead text-center">Arrange a match with a team right now</p>
+            <p class="lead text-center">
+              <!-- <a class="btn btn-primary btn-lg" href="#" role="button"><i class="fa fa-info"></i> &nbsp; Learn more</a> -->
+              <a class="btn btn-secondary btn-lg" href="/users/register" role="button"><i class="fa fa-at"></i> &nbsp; Play </a>
+            </p>
+          </div>
+        </div>
 
-    <!-- Full-width images with number and caption text -->
-    <div class="mySlides fade">
-      <!-- <div class="numbertext">1 / 3</div> -->
-      <img src="https://wallpaperbrowse.com/media/images/110826.jpg" style="width:100%; margin-left:auto; margin-right:auto; display:block;">
-      <div class="text">Play!!</div>
+        <div class="carousel-item">
+          <div class="jumbotron">
+            <h1 class="text-center">Bored ?</h1>
+            <p class="lead text-center">Plan a match here, get your friends together and...</p>
+            <p class="lead text-center">
+              <a class="btn btn-secondary btn-lg" href="/users/register" role="button"><i class="fa fa-at"></i> &nbsp; Play </a>
+
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <a class="carousel-control-prev" href="#mainCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#mainCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-
-    <div class="mySlides fade">
-      <!-- <div class="numbertext">2 / 3</div> -->
-      <img src="https://i.pinimg.com/originals/ec/a9/bc/eca9bc66952302ac2490394272e5759a.jpg" style="width:100%; margin-left:auto; margin-right:auto; display:block;">
-      <div class="text">Play!!</div>
-    </div>
-
-    <div class="mySlides fade">
-      <!-- <div class="numbertext">3 / 3</div> -->
-      <img src="http://www.desktop-screens.com/data/out/112/3520283-tennis-wallpapers.jpeg" style="width:100%; margin-left:auto; margin-right:auto; display:block;">
-      <div class="text">Play Play!!</div>
-    </div>
-
-    <!-- Next and previous buttons -->
-    <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a> -->
-    <!-- <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
   </div>
-  <br>
+</div>
+
+<!-- Main content area -->
+<div class="card-container">
+  <div class="container">
+
+    <div class="text-center padded-box pb-0">
+      <h1>Join, Play, Share</h1>
+      <p class="lead"></p>
+
+    </div>
+
+    <div id="matchlist" class="container">
+    </div>
 
 
-  <!-- The dots/circles -->
-  <!-- <div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
+
+    <div class="padded-box row">
+      <div class="col-md-4">
+        <div class="card text-center">
+          <img class="card-img-top" src="images/pic1.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-text">Search and find teams to play with on free time</h5>
+            <a href="#" class="btn btn-primary">Left link</a>
+            <a href="#" class="btn btn-secondary">Right link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center">
+          <img class="card-img-top" src="images/pic2.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-text">Continue to play matches to become top level team</h5>
+            <a href="#" class="btn btn-primary">Left link</a>
+            <a href="#" class="btn btn-secondary">Right link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center">
+          <img class="card-img-top" src="images/pic3.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-text">Participate in the grand Tournament held annually</h5>
+            <a href="#" class="btn btn-primary">Left link</a>
+            <a href="#" class="btn btn-secondary">Right link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--
+
+    <div class="padded-box row">
+      <div class="col-md-4">
+        <div class="card text-center">
+          <img class="card-img-top" src="images/pic4.jpg" alt="Card image cap">
+          <div class="card-body">
+            <blockquote class="card-text">In tristique sem vitae metus ornare luctus tempus nisl volutpat. Integer et est id nisi tempus pharetra sagittis et libero.</blockquote>
+            <p class="card-text quote-text">- Joe Bloggs, <a href="#">A Company</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center">
+          <img class="card-img-top" src="images/pic5.jpg" alt="Card image cap">
+          <div class="card-body">
+            <blockquote class="card-text">Aenean non libero vestibulum, finibus lacus quis, ullamcorper diam. Ut quis sollicitudin mi, dignissim ultrices elit. </blockquote>
+            <p class="card-text quote-text">- Jane Doe, <a href="#">Marketing Business</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center">
+          <img class="card-img-top" src="images/pic6.jpg" alt="Card image cap">
+          <div class="card-body">
+            <blockquote class="card-text">Quisque faucibus neque sodales, suscipit nisi vitae, placerat nisi. Nam cursus molestie posuere. Mauris fringilla condimentum lacus. </blockquote>
+            <p class="card-text quote-text">- Annaleigh Rose, <a href="#">CEO</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div> -->
-<br>
-<h1 class="h1text">Welcome to Our Website </h1>
-<div class="col-lg-4">
-  <h1 class="h2text"><b>Play</b> any match you want here</h1>
-</div>
-<div class="col-lg-4">
-  <h1 class="h2text"><b>Challenge</b> Your Friends, Play with Them</h1>
-</div>
-<div class="col-lg-4">
-  <h1 class="h2text"><b>Share</b> and have fun with friends</h1>
-</div>
-<div class="row row-top-15">
-  <div class="col-lg-8 mid">
-    <h2>Recent News updates</h2>
-  </div>
 
-  <div class="col-lg-4 mid">
-    <h3>Current Challenges</h3>
+
+
+<!-- Coloured bg jumbotron -->
+<div class="gray-bg-container jumbotron-wrap">
+  <div class="container">
+    <div class="jumbotron px-0">
+      <h2>Playing is fun</h2>
+      <p class="lead">We all have those moments when we used to play cricket with our friends on the streets?? well, that is not something that we get to see everyday now. we want to bring that back, we want you to get together and play, spend some time with your friends and make good memories, because at the end of the day, those memories are what will people remember you by...</p>
+      <p style="text-align:right; font-size:16px;"><strong>Goutham </strong><italic>Chief Executive Officer</italic></p>
+      <!-- <p style="text-align:right; font-size:16px;">Team Crick@</p> -->
+    </div>
   </div>
 </div>
-</div>
 
 
 
 
-
-<!-- Never put anything beyond this line -->
-<div class="container">
+<main class="container">
   <div class="row">
-    <div class="col-lg-12">
+
+    <!-- Main content -->
+    <!-- <div class="col-md-8">
+      <article>
+        <h2 class="article-title">Introduction to Crick@</h2>
+
+        <p class="article-meta">Posted On<time datetime="2017-05-14">04 October</time> by <a href="#" rel="author">Gouththam Srikanth</a></p>
+        <p>Welcome to Crick@, an independent website for Street Cricketers from <a href="https://Xontech.ml/" title="Team_Xontech">Team Xontech</a>. This website is <strong>free</strong> to use.</p>
+        <p>I'm a seasoned cricketer myself, i wanted to do something for my fellow cricketers, and to myself, so please make a contribution by spreading news about us via Facebook, Twitter and other social apps...</p>
+
+        <a href="#" class="btn btn-primary">Follow Me</a>
+        <a href="#" class="btn btn-secondary">Message Me</a>
+
+      </article> -->
+<!--
+      <article>
+
+        <h2 class="article-title">Buy unbranded</h2>
+        <p class="article-meta">Posted on <time datetime="2013-05-14">14 May</time> by <a href="#" rel="author">Joe Bloggs</a></p>
+
+        <p>Purchasing a template license for 8.00 GBP (at time of writing around 12 USD) gives you the right to remove any branding including links, logos and source tags relating to ZyPOP. As well as waiving the attribution requirement, your payment will also help us provide continued support for users as well as creating new web templates. Find out more about how to buy at the licensing page on our website which can be accessed at <a href="https://zypopwebtemplates.com/licensing" title="template license">https://zypopwebtemplates.com/licensing</a></p>
+
+        <h3>Lorem lipsum</h3>
+
+        <p>Morbi fermentum condimentum felis, commodo vestibulum sem mattis sed. Aliquam magna ante, mollis vitae tincidunt in, malesuada vitae turpis. Sed aliquam libero ut velit bibendum consectetur. Quisque sagittis, est in laoreet semper, enim dui consequat felis, faucibus ornare urna velit nec leo. Maecenas condimentum velit vitae est lobortis fermentum. In tristique sem vitae metus ornare luctus tempus nisl volutpat. Integer et est id nisi tempus pharetra sagittis et libero.</p>
+
+        <a href="#" class="btn btn-primary">Read more</a>
+        <a href="#" class="btn btn-secondary">Comments</a>
+      </article> -->
+
+
+      <!-- Example pagination Bootstrap component -->
+      <!-- <nav>
+        <ul class="pagination"> -->
+          <!-- <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li> -->
+          <!-- <li class="page-item"><a class="page-link" href="#">Matches</a></li>
+          <li class="page-item active"><a class="page-link" href="#">Teams</a></li> -->
+          <!-- <li class="page-item"><a class="page-link" href="#"></a></li> -->
+          <!-- <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li> -->
+        <!-- </ul>
+      </nav> -->
+    <!-- </div> -->
+
+
+    <!-- Sidebar -->
+    <!-- <aside class="col-md-4">
+      <div class="sidebar-box">
+        <h4>Categories</h4>
+        <div class="list-group list-group-root">
+          <a class="list-group-item active" href="index.html">Home Page</a>
+          <a class="list-group-item" href="examples.html">Style Examples</a>
+          <div class="list-group">
+            <a class="list-group-item" href="three-column.html">Three Column</a>
+            <a class="list-group-item" href="one-column.html">One column / no sidebar</a>
+            <a class="list-group-item" href="text.html">Text / left sidebar</a>
+          </div>
+          <a class="list-group-item" href="three-column.html">Three column layout example</a>
+          <a class="list-group-item" href="#">Sed aliquam libero ut velit bibendum</a>
+          <a class="list-group-item" href="#">Maecenas condimentum velit vitae</a>
+        </div>
+      </div>
+
+      <div class="sidebar-box sidebar-box-bg">
+        <h4>About us</h4>
+        <p>Aenean nec massa a tortor auctor sodales sed a dolor. Duis vitae lorem sem. Proin at velit vel arcu pretium luctus. <a href="#" class="readmore">Read More &raquo;</a></p>
+      </div>
+
+      <div class="sidebar-box">
+        <h4>Search site</h4>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text"  placeholder="Search" aria-label="Search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+
+      <div class="sidebar-box">
+        <h4>Helpful Links</h4>
+        <ul>
+          <li><a href="http://www.themeforest.net/?ref=spykawg" title="premium templates">Premium HTML web templates from $10</a></li>
+          <li><a href="http://www.dreamhost.com/r.cgi?259541" title="web hosting">Cheap web hosting from Dreamhost</a></li>
+          <li><a href="http://tuxthemes.com" title="Tux Themes">Premium WordPress themes</a></li>
+        </ul>
+      </div>
+    </aside> -->
+
+
+  </div>
+</main>
+
+
+
+<!-- Gray bg jumbotron -->
+<!-- <div class="gray-bg-container mb-0 jumbotron-wrap">
+  <div class="container">
+    <div class="jumbotron px-0">
+      <h2>Lorem lipsum</h2>
+      <p class="lead">Quisque sagittis, est in laoreet semper, enim dui consequat felis, faucibus ornare urna velit nec leo. Maecenas condimentum velit vitae est lobortis fermentum. In tristique sem vitae metus ornare luctus tempus nisl volutpat. Integer et est id nisi tempus pharetra sagittis et libero.</p>
+    </div>
+  </div>
+</div> -->

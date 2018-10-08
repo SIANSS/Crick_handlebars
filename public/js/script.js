@@ -2,52 +2,18 @@ var getUrl = window.location;
 var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 // console.log(getUrl.pathname);
 
-
-if(getUrl.pathname == "/matches/fix"){
-  document.getElementById('navpan').innerHTML = "<a href='/matches/Dashboard'>Dashboard</a>";
-  // console.log("fix");
-}else if(getUrl.pathname == "/matches/Dashboard"){
-  document.getElementById('navpan').innerHTML = "<a href='/matches/fix'>Fix</a>";
-  // console.log("dashboard");
-}
-
-if(getUrl.pathname == "/matches/fix"){
-  var datus = document.getElementById('datus');
-  datus.min = new Date().toISOString().split("T")[0];
-}
-
-if(getUrl.pathname !== "/"){
-  document.getElementById('homenavbut').classList.remove("hidden");
-}
-
-if(getUrl.pathname !== "/users/login"){
-  document.getElementById('lognavbut').classList.remove("hidden");
-}
-
-if(getUrl.pathname !== "/users/register"){
-  document.getElementById('regnavbut').classList.remove("hidden");
-}
-
-if(getUrl.pathname == "/connect"){
-  document.getElementById('contnavbut').classList.add("hidden");
-}
-
-if(getUrl.pathname == "/about_us"){
-  document.getElementById('abusnavbut').classList.add("hidden");
-}
-
-if(getUrl.pathname == "/forums"){
-  document.getElementById('formnavbut').classList.add("hidden");
-}
-
-if(getUrl.pathname == "/users/register"){
-  document.getElementById('root').classList.remove("colored-row");
-  document.getElementById('root').classList.add("inverte-row");
-}
-
-if(getUrl.pathname == "/users/login"){
-  document.getElementById('root').classList.remove("colored-row");
-  document.getElementById('root').classList.add("inverte-login-row");
+if(getUrl.pathname == "/"){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var data = JSON.parse(this.responseText);
+      console.log(data);
+      document.getElementById('matchlist').innerHTML = '<h4 class="text-left">latest matches</h4><div id="indom" class="container"></div>';
+      document.getElementById('indom').innerHTML += '';
+    };
+    xhttp.open("GET", baseUrl+"matches/getlatestmatches", true);
+    xhttp.send();
+  }
 }
 
 function getallteams(){
@@ -130,7 +96,7 @@ function challenge(){
 
 
 
-if(getUrl.pathname == "/matches/Dashboard" && (document.getElementById('name_getter') !== null || undefined)){
+if(getUrl.pathname == "/matches/dashboard" && (document.getElementById('name_getter') !== null || undefined)){
   getallmatchesfu();
   getallmatchesbu();
 }
@@ -141,9 +107,10 @@ function getallmatchesfu() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function (){
     if(this.readyState == 4 && this.status == 200){
+      console.log(data1);
       var data1 = JSON.parse(this.responseText);
       for(var i = 0; i < data1.length; i++){
-        document.getElementById('MatchesforYou').innerHTML += "<div class='col-lg-6 mid'>"+data1[i].time+"</div><div class='col-lg-6 mid'>"+data1[i].date+"</div><br><br><div class='col-lg-12 mid'>"+data1[i].location+"</div><br><br><div class='col-lg-4 mid'>"+data1[i].teams.home+"</div><div class='col-lg-4 mid'>VS</div><div class='col-lg-4 mid'>"+data1[i].teams.away+"</div><br><br><br><br><p id='px"+i+"' class='hidden btn-danger'> NOT Confirmed !!</p> <br><br><br>";
+        document.getElementById('MatchesforYou').innerHTML += "<div class=''>"+data1[i].time+"</div><div class=''>"+data1[i].date+"</div><br><br><div class=''>"+data1[i].location+"</div><br><br><div class=''>"+data1[i].teams.home+"</div><div class=''>VS</div><div class=''>"+data1[i].teams.away+"</div><br><br><br><br><p id='px"+i+"' class=''> NOT Confirmed !!</p> <br><br><br>";
         if(data1[i].status_fixed == false) {
           document.getElementById('px'+i+'').classList.remove("hidden");
         }
@@ -167,15 +134,14 @@ function getallmatchesbu() {
 
       document.getElementById('MatchesByYou').innerHTML = "<h3 class='mid'>Arranged by Other</h3>"
       for(var i = 0; i < data2.length; i++){
-        document.getElementById('MatchesByYou').innerHTML += "<input type='text' class='hidden' id='team_id"+i+"' value='"+data2[i]._id+"'><div class='col-lg-6 mid' id='time"+i+"'>"+data2[i].time+"</div><div id='date"+i+"' class='col-lg-6 mid'>"+data2[i].date+"</div><br><br><div id='location"+i+"' class='col-lg-12 mid'>"+data2[i].location+"</div><br><br><div id='home"+i+"' class='col-lg-4 mid'>"+data2[i].teams.home+"</div><div class='col-lg-4 mid'>VS</div><div id='away"+i+"' class='col-lg-4 mid'>"+data2[i].teams.away+"</div><div id='conf"+i+"' class='hidden mid col-lg-12'></div><br><br><br><br><br><br><br><br>";
+        document.getElementById('MatchesByYou').innerHTML += "<input type='text' class='hidden' id='team_id"+i+"' value='"+data2[i]._id+"'><div class='' id='time"+i+"'>"+data2[i].time+"</div><div id='date"+i+"' class=''>"+data2[i].date+"</div><br><br><div id='location"+i+"' class=''>"+data2[i].location+"</div><br><br><div id='home"+i+"' class=''>"+data2[i].teams.home+"</div><div class=''>VS</div><div id='away"+i+"' class=''>"+data2[i].teams.away+"</div><div id='conf"+i+"' class=''></div><br><br><br><br><br><br><br><br>";
         if(data2[i].status_fixed == false) {
           document.getElementById('conf'+i+'').classList.remove("hidden");
-          document.getElementById('conf'+i+'').innerHTML += "<button class='col-lg-6 form-control' onclick='confirmit("+i+")'>Confirm it</button><br><br><br>";
+          document.getElementById('conf'+i+'').innerHTML += "<button class='' onclick='confirmit("+i+")'>Confirm it</button><br><br><br>";
         }
       }
     }
   }
-
   xhttp.open("GET", baseUrl+"/getmatchesv2/"+team, true);
   xhttp.send();
 }
@@ -207,21 +173,21 @@ function confirmit(conf){
   xhttp.send(params);
 }
 
-
-var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}
-    slides[slideIndex-1].style.display = "block";
-    setTimeout(showSlides, 3000); // Change image every 2 seconds
-}
+//
+// var slideIndex = 0;
+// showSlides();
+//
+// function showSlides() {
+//     var i;
+//     var slides = document.getElementsByClassName("mySlides");
+//     for (i = 0; i < slides.length; i++) {
+//         slides[i].style.display = "none";
+//     }
+//     slideIndex++;
+//     if (slideIndex > slides.length) {slideIndex = 1}
+//     slides[slideIndex-1].style.display = "block";
+//     setTimeout(showSlides, 3000); // Change image every 2 seconds
+// }
 
 function add(){
   var title = document.getElementById('datus').value;
