@@ -60,6 +60,10 @@ router.post('/fix', ensureAuthenticated, (req, res) => {
   res.redirect('/');
 });
 
+router.get('/test', (req, res)=>{
+  res.render('test');
+})
+
 router.get('/dashboard', ensureAuthenticated, (req, res)=> {
   res.render('ppage', {team : req.user});
 });

@@ -207,3 +207,8 @@ function add(){
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(params)
 }
+
+
+if(getUrl.location == "matches/test"){
+  document.getElementById('tabbable-navbar').innerHTML = '';
+}

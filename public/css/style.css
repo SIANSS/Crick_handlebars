@@ -6964,3 +6964,9 @@ html {
       margin-right: auto;
       width: 75%;
     }
+    .tablet > .title{
+      background-color: gray;
+    }
+    .tablet > .title > * {
+      color: white;
+    }
