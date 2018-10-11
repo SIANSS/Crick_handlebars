@@ -6970,3 +6970,20 @@ html {
     .tablet > .title > * {
       color: white;
     }
+    .tablet{
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      margin-bottom: 20px!important;
+    }
+
+    .pushin {
+      padding: 10px;
+
+    }
+.hidden{
+  display: none!important;
+}
+.dip:hover{
+  color:green!important;
+}

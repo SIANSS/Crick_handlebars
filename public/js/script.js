@@ -94,12 +94,36 @@ function challenge(){
   xhttp.send(params)
 }
 
+if(getUrl.pathname == "/matches/fix" || getUrl.pathname == "/matches/dashboard"  && (document.getElementById('name_getter') !== null || undefined)){
+  document.getElementById('tabsub1').innerHTML = "View dashboard";
+  document.getElementById('tabsub1').href = "/matches/dashboard";
+  document.getElementById('tabsub2').innerHTML = "Fix Match";
+  document.getElementById('tabsub2').href = "/matches/fix";
+  document.getElementById('tabbable-navbar').innerHTML = "Team Menu";
+
+}
 
 
 if(getUrl.pathname == "/matches/dashboard" && (document.getElementById('name_getter') !== null || undefined)){
+  document.getElementById('previt').classList.add("hidden");
   getallmatchesfu();
-  getallmatchesbu();
 }
+
+function changeit(){
+  document.getElementById('MatchesforYou').style.display = "none";
+  document.getElementById('MatchesByYou').style.display = "";
+  document.getElementById('previt').classList.remove("hidden");
+  document.getElementById('nextit').classList.add("hidden");
+  getallmatchesbu();
+
+}
+function changeit2(){
+  document.getElementById('MatchesByYou').style.display = "none";
+  document.getElementById('MatchesforYou').style.display = "";
+  document.getElementById('previt').classList.add("hidden");
+  document.getElementById('nextit').classList.remove("hidden");
+}
+
 
 function getallmatchesfu() {
   var team = document.getElementById('name_getter').value;
@@ -110,9 +134,9 @@ function getallmatchesfu() {
       console.log(data1);
       var data1 = JSON.parse(this.responseText);
       for(var i = 0; i < data1.length; i++){
-        document.getElementById('MatchesforYou').innerHTML += "<div class=''>"+data1[i].time+"</div><div class=''>"+data1[i].date+"</div><br><br><div class=''>"+data1[i].location+"</div><br><br><div class=''>"+data1[i].teams.home+"</div><div class=''>VS</div><div class=''>"+data1[i].teams.away+"</div><br><br><br><br><p id='px"+i+"' class=''> NOT Confirmed !!</p> <br><br><br>";
+        document.getElementById('MatchesforYou').innerHTML += '<div class="tablet col-sm-3"><div class="title mid"><p><b>'+data1[i].teams.home+' </b> VS <b>'+data1[i].teams.away+'</b> </p><p>'+data1[i].time+' || '+data1[i].date+'</p><button id="hidbut'+i+'" type="button" class="btn btn-danger hidden" name="button" onclick="">Not Confirmed</button><br><br></div></div>';
         if(data1[i].status_fixed == false) {
-          document.getElementById('px'+i+'').classList.remove("hidden");
+          document.getElementById('hidbut'+i+'').classList.remove("hidden");
         }
       }
       // <input id='statusx"+i+"' type='text' class='hidden btn-success form-control' value='"+data1[i].status_fixed+"'>
@@ -131,13 +155,16 @@ function getallmatchesbu() {
   xhttp.onreadystatechange = function (){
     if(this.readyState == 4 && this.status == 200){
       var data2 = JSON.parse(this.responseText);
-
-      document.getElementById('MatchesByYou').innerHTML = "<h3 class='mid'>Arranged by Other</h3>"
+      if(data2.value == null){
+        document.getElementById('MatchesByYou').innerHTML = '<div class="tablet col-sm-6 mid"><h1>No Matches available for now</h1></div>';
+      }
       for(var i = 0; i < data2.length; i++){
-        document.getElementById('MatchesByYou').innerHTML += "<input type='text' class='hidden' id='team_id"+i+"' value='"+data2[i]._id+"'><div class='' id='time"+i+"'>"+data2[i].time+"</div><div id='date"+i+"' class=''>"+data2[i].date+"</div><br><br><div id='location"+i+"' class=''>"+data2[i].location+"</div><br><br><div id='home"+i+"' class=''>"+data2[i].teams.home+"</div><div class=''>VS</div><div id='away"+i+"' class=''>"+data2[i].teams.away+"</div><div id='conf"+i+"' class=''></div><br><br><br><br><br><br><br><br>";
-        if(data2[i].status_fixed == false) {
-          document.getElementById('conf'+i+'').classList.remove("hidden");
-          document.getElementById('conf'+i+'').innerHTML += "<button class='' onclick='confirmit("+i+")'>Confirm it</button><br><br><br>";
+        document.getElementById('MatchesByYou').innerHTML = '<div class="tablet col-sm-3"><p class="hidden" id='+team_id+'>'+data2[i]._id+'</p><div class="title mid"><p><b id=''>'+data2[i].teams.home+' </b> VS <b>'+data2[i].teams.away
+        +'</b> </p><p>'+data2[i].time+' || '+data2[i].date+'</p><button id="hidbut'+i+'" onclick="confirmit('+i+')" type="button" class="btn btn-danger" name="button">Not Confirmed</button><br><br></div></div>';
+        if(data2[i].status_fixed == true) {
+          document.getElementById('hidbut'+i+'').classList.remove("btn-danger");
+          document.getElementById('hidbut'+i+'').classList.add("btn-success");
+          document.getElementById('hidbut'+i+'').value = "Confirmed";
         }
       }
     }
@@ -178,37 +205,37 @@ function confirmit(conf){
 // showSlides();
 //
 // function showSlides() {
-//     var i;
-//     var slides = document.getElementsByClassName("mySlides");
-//     for (i = 0; i < slides.length; i++) {
-//         slides[i].style.display = "none";
-//     }
-//     slideIndex++;
-//     if (slideIndex > slides.length) {slideIndex = 1}
-//     slides[slideIndex-1].style.display = "block";
-//     setTimeout(showSlides, 3000); // Change image every 2 seconds
-// }
+  //     var i;
+  //     var slides = document.getElementsByClassName("mySlides");
+  //     for (i = 0; i < slides.length; i++) {
+    //         slides[i].style.display = "none";
+    //     }
+    //     slideIndex++;
+    //     if (slideIndex > slides.length) {slideIndex = 1}
+    //     slides[slideIndex-1].style.display = "block";
+    //     setTimeout(showSlides, 3000); // Change image every 2 seconds
+    // }
 
-function add(){
-  var title = document.getElementById('datus').value;
-  var body  = document.getElementById('locations').value;
+    function add(){
+      var title = document.getElementById('datus').value;
+      var body  = document.getElementById('locations').value;
 
-  var params = "title="+title+"&body="+body;
-  console.log(params);
+      var params = "title="+title+"&body="+body;
+      console.log(params);
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if(this.readyState == 4 && this.status == 200){
-      document.getElementById('success_id').innerHTML = "<h1>Added</h1>";
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if(this.readyState == 4 && this.status == 200){
+          document.getElementById('success_id').innerHTML = "<h1>Added</h1>";
+        }
+      }
+
+      xhttp.open("POST", baseUrl+"/forums", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send(params)
     }
-  }
-
-  xhttp.open("POST", baseUrl+"/forums", true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send(params)
-}
 
 
-if(getUrl.location == "matches/test"){
-  document.getElementById('tabbable-navbar').innerHTML = '';
-}
+    if(getUrl.location == "matches/test"){
+      document.getElementById('tabbable-navbar').innerHTML = '';
+    }

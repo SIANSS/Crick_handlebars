@@ -1,22 +1,12 @@
 <br>
 <label class="mid" id="tname" style="background-color:black; color:white;">Matches</label>
+<input id="nextit" type="button" class="col-sm-3 mid btn btn-danger" value="See Match others Arranged" onclick="changeit()">
+<input id="previt" type="button" class="col-sm-3 mid btn btn-danger" value="See Match You Arranged" onclick="changeit2()">
 <!-- Repeting  -->
-<div class="row">
-  <div id="MatchesforYou" class="col-sm-6 mid">
-    <div class="container">
-
-      <br>
-      <h3 class="mid">Arranged by You</h3>
-
-    </div>
-  </div>
-  <div id="MatchesByYou" class="col-sm-6 mid">
-    <div class="container">
-
-      <br>
-      <br>
-      <br>
-    </div>
-  </div>
+<div class="container">
+  <br>
+  <h3 class="mid">Arranged by You</h3>
+  <div class="row pushin" id="MatchesforYou"></div>
+  <div id="MatchesByYou" class="row pushin"></div>
 </div>
 <!-- Repeting -->

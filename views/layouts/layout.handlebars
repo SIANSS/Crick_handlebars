@@ -65,8 +65,8 @@
 					<li class="nav-item dropdown">
 						<a id="tabbable-navbar" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plan &amp; Play</a>
 						<div class="dropdown-menu navbar-dark bg-primary">
-							<a class="dropdown-item" href="/users/register">Join us</a>
-							<a class="dropdown-item" disabled href="#">Call for a Tournament</a>
+							<a id="tabsub1" class="dropdown-item" href="/users/register">Join us</a>
+							<a id="tabsub2" class="dropdown-item" disabled href="#">Call for a Tournament</a>
 						</div>
 					</li>
 
@@ -85,10 +85,10 @@
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{team.manager.name}}</a>
 			<input class="hidden" id="name_getter" value="{{team.team_name}}">
-			<!-- <div class="dropdown-menu navbar-dark bg-primary"> -->
-				<!-- <a class="dropdown-item" href="three-column.html"></a> -->
+			<div class="dropdown-menu navbar-dark bg-primary">
+				<a style="color:white;" class="dropdown-item dip" href="/users/logout">Logout</a>
 				<!-- <a class="dropdown-item" href="three-column.html">Fund a Tournament</a> -->
-			<!-- </div> -->
+			</div>
 		</li>
 		{{else}}
 		<li class="nav-item dropdown">
