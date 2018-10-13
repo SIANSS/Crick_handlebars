@@ -127,12 +127,12 @@ function changeit2(){
 
 function getallmatchesfu() {
   var team = document.getElementById('name_getter').value;
-
+  console.log(team);
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function (){
     if(this.readyState == 4 && this.status == 200){
-      console.log(data1);
       var data1 = JSON.parse(this.responseText);
+      console.log(data1);
       for(var i = 0; i < data1.length; i++){
         document.getElementById('MatchesforYou').innerHTML += '<div class="tablet col-sm-3"><div class="title mid"><p><b>'+data1[i].teams.home+' </b> VS <b>'+data1[i].teams.away+'</b> </p><p>'+data1[i].time+' || '+data1[i].date+'</p><button id="hidbut'+i+'" type="button" class="btn btn-danger hidden" name="button" onclick="">Not Confirmed</button><br><br></div></div>';
         if(data1[i].status_fixed == false) {
@@ -159,12 +159,19 @@ function getallmatchesbu() {
         document.getElementById('MatchesByYou').innerHTML = '<div class="tablet col-sm-6 mid"><h1>No Matches available for now</h1></div>';
       }
       for(var i = 0; i < data2.length; i++){
-        document.getElementById('MatchesByYou').innerHTML = '<div class="tablet col-sm-3"><p class="hidden" id='+team_id+'>'+data2[i]._id+'</p><div class="title mid"><p><b id=''>'+data2[i].teams.home+' </b> VS <b>'+data2[i].teams.away
-        +'</b> </p><p>'+data2[i].time+' || '+data2[i].date+'</p><button id="hidbut'+i+'" onclick="confirmit('+i+')" type="button" class="btn btn-danger" name="button">Not Confirmed</button><br><br></div></div>';
+        document.getElementById('MatchesByYou').innerHTML = '<div class="tablet col-sm-3"><p class="hidden" id="team_id'+i+'">'+data2[i]._id+'</p><div class="title mid"><p><b id=home'+i+'>'
+        +data2[i].teams.home+' </b> VS <b id="away'+i+'">'+data2[i].teams.away
+        +'</b> </p><p><b id="time'+i+'">'+data2[i].time+' </b>|| <b id="date'+i+'">'+data2[i].date+'</b></p><p id="location'+i+'">'+data2[i].location+'</p><button id="hidbut'+i+'" onclick="confirmit('+i+')" type="button" class="btn"></button><br><br></div></div>';
         if(data2[i].status_fixed == true) {
-          document.getElementById('hidbut'+i+'').classList.remove("btn-danger");
+          // document.getElementById('hidbut'+i).classList.remove("btn-danger");
+          console.log("true amam");
           document.getElementById('hidbut'+i+'').classList.add("btn-success");
-          document.getElementById('hidbut'+i+'').value = "Confirmed";
+          // document.getElementById('hidbut'+i+'').classList.add("btn-success");
+          document.getElementById('hidbut'+i+'').innerHTML = "Confirmed";
+          document.getElementById('hidbut'+i+'').disabled = true;
+        }else{
+          document.getElementById('hidbut'+i+'').classList.add("btn-danger");
+          document.getElementById('hidbut'+i+'').disabled = false;
         }
       }
     }
@@ -174,31 +181,31 @@ function getallmatchesbu() {
 }
 
 
-//function confirmit(conf){
-//  var id = document.getElementById('team_id'+conf).value;
- // var date = document.getElementById('date'+conf).innerHTML;
- // var location = document.getElementById('location'+conf).innerHTML;
- // var time = document.getElementById('time'+conf).innerHTML;
- // var home = document.getElementById('home'+conf).innerHTML;
- // var away = document.getElementById('away'+conf).innerHTML;
+function confirmit(conf){
+  var id = document.getElementById('team_id'+conf).innerHTML;
+  var date = document.getElementById('date'+conf).innerHTML;
+  var location = document.getElementById('location'+conf).innerHTML;
+  var time = document.getElementById('time'+conf).innerHTML;
+  var home = document.getElementById('home'+conf).innerHTML;
+  var away = document.getElementById('away'+conf).innerHTML;
 
-  //var params = "location="+location+"&date="+date+"&time="+time+"&home="+home+"&away="+away;
+  var params = "location="+location+"&date="+date+"&time="+time+"&home="+home+"&away="+away;
 
-  //console.log(params);
+  console.log(params);
 
-  //var xhttp = new XMLHttpRequest();
-  //xhttp.onreadystatechange = function (){
-    //if(this.readyState == 4 && this.status == 200){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function (){
+    if(this.readyState == 4 && this.status == 200){
       // getallmatchesfu();
-      //getallmatchesbu();
-    //}
-  //}
+      getallmatchesbu();
+    }
+  }
 
-//
-//  xhttp.open("PUT", baseUrl+"/confirmmatch/"+id, true);
- // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
- // xhttp.send(params);
-//}
+
+  xhttp.open("PUT", baseUrl+"/confirmmatch/"+id, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(params);
+}
 
 //
 // var slideIndex = 0;
