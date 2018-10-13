@@ -174,31 +174,31 @@ function getallmatchesbu() {
 }
 
 
-function confirmit(conf){
-  var id = document.getElementById('team_id'+conf).value;
-  var date = document.getElementById('date'+conf).innerHTML;
-  var location = document.getElementById('location'+conf).innerHTML;
-  var time = document.getElementById('time'+conf).innerHTML;
-  var home = document.getElementById('home'+conf).innerHTML;
-  var away = document.getElementById('away'+conf).innerHTML;
+//function confirmit(conf){
+//  var id = document.getElementById('team_id'+conf).value;
+ // var date = document.getElementById('date'+conf).innerHTML;
+ // var location = document.getElementById('location'+conf).innerHTML;
+ // var time = document.getElementById('time'+conf).innerHTML;
+ // var home = document.getElementById('home'+conf).innerHTML;
+ // var away = document.getElementById('away'+conf).innerHTML;
 
-  var params = "location="+location+"&date="+date+"&time="+time+"&home="+home+"&away="+away;
+  //var params = "location="+location+"&date="+date+"&time="+time+"&home="+home+"&away="+away;
 
-  console.log(params);
+  //console.log(params);
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function (){
-    if(this.readyState == 4 && this.status == 200){
+  //var xhttp = new XMLHttpRequest();
+  //xhttp.onreadystatechange = function (){
+    //if(this.readyState == 4 && this.status == 200){
       // getallmatchesfu();
-      getallmatchesbu();
-    }
-  }
+      //getallmatchesbu();
+    //}
+  //}
 
-
-  xhttp.open("PUT", baseUrl+"/confirmmatch/"+id, true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send(params);
-}
+//
+//  xhttp.open("PUT", baseUrl+"/confirmmatch/"+id, true);
+ // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ // xhttp.send(params);
+//}
 
 //
 // var slideIndex = 0;
