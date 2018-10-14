@@ -85,11 +85,13 @@ function challenge(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if(this.readyState == 4 && this.status == 200){
-      document.getElementById('match_fixed').innerHTML = "<h1>Success</h1>";
+      var reps = this.responseText;
+      console.log(reps);
+      document.getElementById('match_fixed').innerHTML = "<h1>"+reps+"</h1>";
     }
   }
 
-  xhttp.open("POST", baseUrl+"/fix", true);
+  xhttp.open("PUT", baseUrl+"/fix", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(params)
 }
@@ -135,7 +137,7 @@ function getallmatchesfu() {
       var data1 = JSON.parse(this.responseText);
       console.log(data1);
       for(var i = 0; i < data1.length; i++){
-        document.getElementById('MatchesforYou').innerHTML += '<div class="tablet col-sm-3"><div class="title mid"><p><b>'+data1[i].teams.home+' </b> VS <b>'+data1[i].teams.away+'</b> </p><p>'+data1[i].time+' || '+data1[i].date+'</p><button id="hidbut'+i+'" type="button" class="btn btn-danger hidden" name="button">Not Confirmed</button><br><br></div></div>';
+        document.getElementById('MatchesforYou').innerHTML += '<div class="tablet col-sm-3"><div class="title mid"><p><b>'+data1[i].teams.home+' </b> VS <b>'+data1[i].teams.away+'</b> </p><p>'+data1[i].time+' || '+data1[i].date+'</p><p>'+data1[i].location+'</p><button id="hidbut'+i+'" type="button" class="btn btn-danger hidden" name="button">Not Confirmed</button><br><br></div></div>';
         if(data1[i].status_fixed == false) {
           document.getElementById('hidbut'+i+'').classList.remove("hidden");
         }
@@ -165,8 +167,8 @@ function getallmatchesbu() {
       if(data2.value !== false){
       for(var i = 0; i < data2.length; i++){
         document.getElementById('MatchesByYou').innerHTML = '<div class="tablet col-sm-3"><p class="hidden" id="team_id'+i+'">'+data2[i]._id+'</p><div class="title mid"><p><b id=home'+i+'>'
-        +data2[i].teams.home+' </b> VS <b id="away'+i+'">'+data2[i].teams.away
-        +'</b> </p><p><b id="time'+i+'">'+data2[i].time+' </b>|| <b id="date'+i+'">'+data2[i].date+'</b></p><p id="location'+i+'">'+data2[i].location+'</p><div id="btnspace'+i+'"></div><br><br></div></div>';
+        +data2[i].teams.home+'</b> VS <b id="away'+i+'">'+data2[i].teams.away
+        +'</b> </p><p><b id="time'+i+'">'+data2[i].time+' </b>|| <b id="date'+i+'">'+data2[i].date+'</b></p><p id="location'+i+'">'+data2[i].location+'</p><div id="btnspace'+i+'"></div></div></div>';
         if(data2[i].status_fixed == true || data2[i].status_fixed === true) {
           document.getElementById('btnspace'+i+'').innerHTML = '<input id="hidbut'+i+'" type="button" class="btn btn-success" value="Confirmed">';
           // <input id="hidbut'+i+'" onclick="confirmit('+i+')" type="button" class="btn btn-danger" value="Not Confirmed">

@@ -1,3 +1,4 @@
+var nodemailer = require('nodemailer');
 var express =require('express');
 var path = require('path');
 var app = express();

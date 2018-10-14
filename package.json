@@ -7,23 +7,24 @@
     "node": "6.10.1"
   },
   "dependencies": {
-    "bcryptjs": "latest",
     "bcrypt-nodejs": "*",
+    "bcryptjs": "latest",
     "body-parser": "*",
     "connect-flash": "*",
     "cookie-parser": "^1.4.1",
     "express": "*",
     "express-handlebars": "*",
     "express-messages": "*",
-    "express-validator": "*",
     "express-session": "*",
-    "mongoose": "*",
+    "express-validator": "*",
     "mongodb": "*",
+    "mongoose": "*",
+    "nodemailer": "^4.6.8",
     "passport": "*",
-    "passport-http": "*",
-    "passport-local": "*",
     "passport-facebook": "~2.1.1",
-    "passport-google-oauth": "~1.0.0"
+    "passport-google-oauth": "~1.0.0",
+    "passport-http": "*",
+    "passport-local": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
