@@ -126,15 +126,16 @@ function changeit2(){
 
 
 function getallmatchesfu() {
+  document.getElementById('tchange').innerHTML = 'Arranged By you';
   var team = document.getElementById('name_getter').value;
-  console.log(team);
+  // console.log(team);
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function (){
     if(this.readyState == 4 && this.status == 200){
       var data1 = JSON.parse(this.responseText);
       console.log(data1);
       for(var i = 0; i < data1.length; i++){
-        document.getElementById('MatchesforYou').innerHTML += '<div class="tablet col-sm-3"><div class="title mid"><p><b>'+data1[i].teams.home+' </b> VS <b>'+data1[i].teams.away+'</b> </p><p>'+data1[i].time+' || '+data1[i].date+'</p><button id="hidbut'+i+'" type="button" class="btn btn-danger hidden" name="button" onclick="">Not Confirmed</button><br><br></div></div>';
+        document.getElementById('MatchesforYou').innerHTML += '<div class="tablet col-sm-3"><div class="title mid"><p><b>'+data1[i].teams.home+' </b> VS <b>'+data1[i].teams.away+'</b> </p><p>'+data1[i].time+' || '+data1[i].date+'</p><button id="hidbut'+i+'" type="button" class="btn btn-danger hidden" name="button">Not Confirmed</button><br><br></div></div>';
         if(data1[i].status_fixed == false) {
           document.getElementById('hidbut'+i+'').classList.remove("hidden");
         }
@@ -149,31 +150,43 @@ function getallmatchesfu() {
 
 
 function getallmatchesbu() {
+  document.getElementById('tchange').innerHTML = 'Challenges';
+  document.getElementById('MatchesByYou').innerHTML = '';
   var team = document.getElementById('name_getter').value;
 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function (){
     if(this.readyState == 4 && this.status == 200){
       var data2 = JSON.parse(this.responseText);
-      if(data2.value == null){
+      console.log(data2);
+      if(data2 == false ){
         document.getElementById('MatchesByYou').innerHTML = '<div class="tablet col-sm-6 mid"><h1>No Matches available for now</h1></div>';
       }
+      if(data2.value !== false){
       for(var i = 0; i < data2.length; i++){
         document.getElementById('MatchesByYou').innerHTML = '<div class="tablet col-sm-3"><p class="hidden" id="team_id'+i+'">'+data2[i]._id+'</p><div class="title mid"><p><b id=home'+i+'>'
         +data2[i].teams.home+' </b> VS <b id="away'+i+'">'+data2[i].teams.away
-        +'</b> </p><p><b id="time'+i+'">'+data2[i].time+' </b>|| <b id="date'+i+'">'+data2[i].date+'</b></p><p id="location'+i+'">'+data2[i].location+'</p><button id="hidbut'+i+'" onclick="confirmit('+i+')" type="button" class="btn"></button><br><br></div></div>';
-        if(data2[i].status_fixed == true) {
+        +'</b> </p><p><b id="time'+i+'">'+data2[i].time+' </b>|| <b id="date'+i+'">'+data2[i].date+'</b></p><p id="location'+i+'">'+data2[i].location+'</p><div id="btnspace'+i+'"></div><br><br></div></div>';
+        if(data2[i].status_fixed == true || data2[i].status_fixed === true) {
+          document.getElementById('btnspace'+i+'').innerHTML = '<input id="hidbut'+i+'" type="button" class="btn btn-success" value="Confirmed">';
+          // <input id="hidbut'+i+'" onclick="confirmit('+i+')" type="button" class="btn btn-danger" value="Not Confirmed">
           // document.getElementById('hidbut'+i).classList.remove("btn-danger");
-          console.log("true amam");
-          document.getElementById('hidbut'+i+'').classList.add("btn-success");
+          // document.getElementById(`hidbut${i}`).classList.add("btn-success");
           // document.getElementById('hidbut'+i+'').classList.add("btn-success");
-          document.getElementById('hidbut'+i+'').innerHTML = "Confirmed";
-          document.getElementById('hidbut'+i+'').disabled = true;
-        }else{
-          document.getElementById('hidbut'+i+'').classList.add("btn-danger");
-          document.getElementById('hidbut'+i+'').disabled = false;
+          // document.getElementById(`hidbut${i}`).value += "Confirmed";
+          // document.getElementById(`hidbut${i}`).disabled = true;
+          console.log(data2[i].status_fixed);
+        }
+        if(data2[i].status_fixed == false || data2[i].status_fixed === false){
+        document.getElementById('btnspace'+i+'').innerHTML = '<input id="hidbut'+i+'" onclick="confirmit('+i+')" type="button" class="btn btn-danger" value="Not Confirmed">';
+
+        //   console.log(data2[i].status_fixed);
+        //   document.getElementById(`hidbut${i}`).value += "Not Confirmed";
+        //   document.getElementById(`hidbut${i}`).classList.add("btn-danger");
+        //   document.getElementById(`hidbut${i}`).disabled = false;
         }
       }
+    }
     }
   }
   xhttp.open("GET", baseUrl+"/getmatchesv2/"+team, true);

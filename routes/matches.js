@@ -73,14 +73,17 @@ router.get('/getmatches/:team', ensureAuthenticated, (req, res)=>{
   var team_name = req.params.team;
   console.log(team_name);
 
-  db.collection('matches').find({'teams.home' : team_name}).toArray((err, result) => {
+  db.collection('matches').find({'teams.home' : team_name}).toArray((err, ress) => {
     if(err) throw err;
-    if(!result) {
-      console.log("No result");
+    if(ress) {
+      var sendback = ress;
+      res.send(sendback);
+      console.log(sendback);
     }
     else {
-      res.send(result);
-      console.log(result);
+      var sendback = false;
+      res.send(sendback);
+      console.log("No result");
     }
   })
 
@@ -93,12 +96,14 @@ router.get('/getmatchesv2/:team', ensureAuthenticated, (req, res)=>{
 
   db.collection('matches').find({'teams.away' : team_name}).toArray((err, result) => {
     if(err) throw err;
-    if(!result) {
-      console.log("No result");
-    }
-    else {
+    if(result.length !== 0) {
       res.send(result);
       console.log(result);
+    }
+    if(result.length === 0 || result.length == 0) {
+      var statux = false;
+      res.send(statux);
+      console.log("No result");
     }
   })
 
