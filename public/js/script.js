@@ -2,6 +2,13 @@ var getUrl = window.location;
 var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 // console.log(getUrl.pathname);
 
+
+if(getUrl.pathname == "/matches/fix"){
+  var datus = document.getElementById('datus');
+  datus.min = new Date().toISOString().split("T")[0];
+}
+
+
 if(getUrl.pathname == "/"){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -101,6 +108,8 @@ if(getUrl.pathname == "/matches/fix" || getUrl.pathname == "/matches/dashboard" 
   document.getElementById('tabsub1').href = "/matches/dashboard";
   document.getElementById('tabsub2').innerHTML = "Fix Match";
   document.getElementById('tabsub2').href = "/matches/fix";
+  document.getElementById('tabsub3').innerHTML = "Stats & Leaderboards";
+  document.getElementById('tabsub3').href = "/matches/leaderboard";
   document.getElementById('tabbable-navbar').innerHTML = "Team Menu";
 
 }
@@ -137,9 +146,14 @@ function getallmatchesfu() {
       var data1 = JSON.parse(this.responseText);
       console.log(data1);
       for(var i = 0; i < data1.length; i++){
-        document.getElementById('MatchesforYou').innerHTML += '<div class="tablet col-sm-3"><div class="title mid"><p><b>'+data1[i].teams.home+' </b> VS <b>'+data1[i].teams.away+'</b> </p><p>'+data1[i].time+' || '+data1[i].date+'</p><p>'+data1[i].location+'</p><button id="hidbut'+i+'" type="button" class="btn btn-danger hidden" name="button">Not Confirmed</button><br><br></div></div>';
+        document.getElementById('MatchesforYou').innerHTML += '<div class="tablet col-sm-3"><div class="title mid"><p><b>'+data1[i].teams.home+' </b> VS <b>'+data1[i].teams.away+'</b> </p><p>'+data1[i].time+' || '+data1[i].date+'</p><p>'+data1[i].location+'</p><button id="showbut'+i+'" class="btn btn-success">Confirmed</button><button id="hidbut'+i+'" type="button" class="btn btn-danger hidden" name="button">Not Confirmed</button><br><br></div></div>';
         if(data1[i].status_fixed == false) {
           document.getElementById('hidbut'+i+'').classList.remove("hidden");
+          document.getElementById('showbut'+i+'').classList.add("hidden");
+        }
+        if(data1[i].status_fixed == true){
+          document.getElementById('hidbut'+i+'').classList.add("hidden");
+          document.getElementById('showbut'+i+'').classList.remove("hidden");
         }
       }
       // <input id='statusx"+i+"' type='text' class='hidden btn-success form-control' value='"+data1[i].status_fixed+"'>

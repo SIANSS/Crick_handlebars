@@ -99,6 +99,9 @@ router.put('/fix', ensureAuthenticated, (req, res) => {
     }
   })
 });
+router.get('/leaderboard', (req, res)=>{
+  res.render('statpage');
+})
 
 router.get('/test', (req, res)=>{
   res.render('test');
@@ -199,6 +202,8 @@ router.put('/confirmmatch/:id', ensureAuthenticated, (req, res)=>{
     }
   });
 });
+
+
 
 module.exports = router;
 
