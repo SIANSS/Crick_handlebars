@@ -47,7 +47,7 @@ function getallteams(){
 
       selectEl.onchange = function(){
         document.getElementById('btn').classList.remove("hidden");
-        document.getElementById('btn').innerHTML = "Select";
+        document.getElementById('btn').innerHTML = "Choose";
       }
 
 
@@ -64,6 +64,7 @@ function getallteams(){
 }
 
 function selected(){
+  document.getElementById('btn').style.display = "none";
   // console.log("hellow");
   selectEl = document.getElementById('locations');
   selectEl.classList.remove("hidden");
@@ -74,7 +75,7 @@ function selected(){
     selectEl.options.add(new Option(geword+ " " + i, geword + i));
   }
 
-  document.getElementById('selection-section').innerHTML = "<br><div class='form-group'><label>Select Play Time :</label><input class='form-control' type='time' id='times'></div><div class='form-group'><label>Maximum Overs : </label><select id='overs' class='form-control'><option value='5'>5</option><option value='6'>6</option><option value='10'>10</option><option value='20'>20</option></select></div><div class='form-group'><label>Players per team:</label><select id='ppt' class='form-control'><option value='5'>5</option><option value='12'>12</option></select></div> <a style='text-decoration:none; text-align:center;' class='form-control' href='/matches/fix'>Go back</a> <br><input class='form-control btn-danger' type='button' onclick='challenge()' value='Challenge !!!'>";
+  document.getElementById('selection-section').innerHTML = "<br><div class='form-group col-lg-4'><label>Select Play Time :</label><input class='form-control' type='time' id='times'></div><div class='form-group col-lg-4'><label>Maximum Overs : </label><select id='overs' class='form-control'><option value='5'>5</option><option value='6'>6</option><option value='10'>10</option><option value='20'>20</option></select></div><div class='form-group col-lg-4'><label>Players per team:</label><select id='ppt' class='form-control'><option value='5'>5</option><option value='12'>12</option></select></div> <a style='text-decoration:none; text-align:center; margin-bottom:20px;' class='form-control' href='/matches/fix'>Go back</a> <input class='form-control btn-danger' type='button' onclick='challenge()' value='Challenge !!!'>";
 }
 
 function challenge(){
@@ -94,7 +95,19 @@ function challenge(){
     if(this.readyState == 4 && this.status == 200){
       var reps = this.responseText;
       console.log(reps);
-      document.getElementById('match_fixed').innerHTML = "<h1>"+reps+"</h1>";
+      // document.getElementById('match_fixed').innerHTML = "<h1>"+reps+"</h1>";
+      // window.alert(reps);
+      if(reps == "success"){
+        document.getElementById('match_fixed').innerHTML = "<h1>"+reps+"</h1>";
+        window.location.href = "http://localhost:4446/matches/dashboard";
+      }
+      if(reps == "This Match Exists already"){
+        document.getElementById('match_fixed').innerHTML = "<h1>"+reps+"</h1>";
+        setTimeout(function() {
+          window.location.href = "http://localhost:4446/matches/fix";
+        }, 3000);
+      }
+
     }
   }
 
@@ -109,7 +122,7 @@ if(getUrl.pathname == "/matches/fix" || getUrl.pathname == "/matches/dashboard" 
   document.getElementById('tabsub2').innerHTML = "Fix Match";
   document.getElementById('tabsub2').href = "/matches/fix";
   document.getElementById('tabsub3').innerHTML = "Stats & Leaderboards";
-  document.getElementById('tabsub3').href = "/matches/leaderboard";
+  document.getElementById('tabsub3').href = "#"; // -- > /matches/leaderboard
   document.getElementById('tabbable-navbar').innerHTML = "Team Menu";
 
 }
@@ -129,6 +142,7 @@ function changeit(){
 
 }
 function changeit2(){
+  document.getElementById('tchange').innerHTML = 'Arranged By You';
   document.getElementById('MatchesByYou').style.display = "none";
   document.getElementById('MatchesforYou').style.display = "";
   document.getElementById('previt').classList.add("hidden");
@@ -146,7 +160,7 @@ function getallmatchesfu() {
       var data1 = JSON.parse(this.responseText);
       console.log(data1);
       for(var i = 0; i < data1.length; i++){
-        document.getElementById('MatchesforYou').innerHTML += '<div class="tablet col-sm-3"><div class="title mid"><p><b>'+data1[i].teams.home+' </b> VS <b>'+data1[i].teams.away+'</b> </p><p>'+data1[i].time+' || '+data1[i].date+'</p><p>'+data1[i].location+'</p><button id="showbut'+i+'" class="btn btn-success">Confirmed</button><button id="hidbut'+i+'" type="button" class="btn btn-danger hidden" name="button">Not Confirmed</button><br><br></div></div>';
+        document.getElementById('MatchesforYou').innerHTML += '<div style="margin-bottom:20px;" class="col-sm-4 panel panel-primary"><div style="background-color:Darkgreen;  padding-top:10px;" class="title mid"><h5 style="color:white; font-size:1.75vw;"><b>'+data1[i].teams.home+' </b> <i>VS</i> <b>'+data1[i].teams.away+'</b> </h5><p style="color:white; font-size:1.5vw;">'+data1[i].time+' || '+data1[i].date+'</p><p style="color:white; font-size:2vw;">'+data1[i].location+'</p><button id="showbut'+i+'" class="btn btn-default">Confirmed</button><button id="hidbut'+i+'" class="btn btn-danger hidden" name="button">Not Confirmed</button><br><br></div></div>';
         if(data1[i].status_fixed == false) {
           document.getElementById('hidbut'+i+'').classList.remove("hidden");
           document.getElementById('showbut'+i+'').classList.add("hidden");
@@ -180,11 +194,11 @@ function getallmatchesbu() {
       }
       if(data2.value !== false){
       for(var i = 0; i < data2.length; i++){
-        document.getElementById('MatchesByYou').innerHTML = '<div class="tablet col-sm-3"><p class="hidden" id="team_id'+i+'">'+data2[i]._id+'</p><div class="title mid"><p><b id=home'+i+'>'
-        +data2[i].teams.home+'</b> VS <b id="away'+i+'">'+data2[i].teams.away
-        +'</b> </p><p><b id="time'+i+'">'+data2[i].time+' </b>|| <b id="date'+i+'">'+data2[i].date+'</b></p><p id="location'+i+'">'+data2[i].location+'</p><div id="btnspace'+i+'"></div></div></div>';
+        document.getElementById('MatchesByYou').innerHTML = '<div style="margin-bottom:20px;" class="col-sm-4 panel panel-primary"><p class="hidden" id="team_id'+i+'">'+data2[i]._id+'</p><div style="background-color:Darkgreen;  padding-top:10px;" class="title mid"><h5 style="color:white; font-size:2.25vw;"><b id=home'+i+'>'
+        +data2[i].teams.home+'</b> <i>VS</i> <b id="away'+i+'">'+data2[i].teams.away
+        +'</b> </h5><p style="color:white; font-size:1.5vw;"><b id="time'+i+'">'+data2[i].time+' </b>|| <b id="date'+i+'">'+data2[i].date+'</b></p><p style="color:white; font-size:2vw;" id="location'+i+'">'+data2[i].location+'</p><div id="btnspace'+i+'"></div></div></div>';
         if(data2[i].status_fixed == true || data2[i].status_fixed === true) {
-          document.getElementById('btnspace'+i+'').innerHTML = '<input id="hidbut'+i+'" type="button" class="btn btn-success" value="Confirmed">';
+          document.getElementById('btnspace'+i+'').innerHTML = '<input style="margin-bottom:20px;" id="hidbut'+i+'" type="button" class="btn btn-default" value="Confirmed">';
           // <input id="hidbut'+i+'" onclick="confirmit('+i+')" type="button" class="btn btn-danger" value="Not Confirmed">
           // document.getElementById('hidbut'+i).classList.remove("btn-danger");
           // document.getElementById(`hidbut${i}`).classList.add("btn-success");
